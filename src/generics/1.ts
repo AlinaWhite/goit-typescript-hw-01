@@ -1,12 +1,10 @@
 import axios from 'axios';
 
-type someResponse = string | [];
-
-async function fetchData(url: string): Promise<someResponse | never> {
+export async function fetchData<T>(url: string): Promise<T> {
   try {
-    const response = await axios.get<someResponse>(url);
+    const response = await axios.get<T>(url);
     return response.data;
   } catch (error) {
-    throw new Error(`Error fetching from ${url}: ${error}`);
+    throw new Error(`Помилка отримання даних з ${url}: ${error}`);
   }
 }
